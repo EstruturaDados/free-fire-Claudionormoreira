@@ -34,9 +34,11 @@ long long cont_comparacoes_bin = 0;
 Item mochila_vetor[MAX_ITENS];
 int total_itens_vetor = 0;
 
-  //Insere um novo item no vetor da mochila, se houver espaço.
-  // novo O item a ser inserido.
- //1 se a inserção foi bem-sucedida, 0 caso contrário (mochila cheia).
+/**
+ * @brief Requisito um novo item no vetor da mochila, se houver espaço.
+ * @brief novo O item a ser inserido.
+ *@return 1 se a inserção foi bem-sucedida, 0 caso contrário (mochila cheia).
+ */
 
 int inserirItemVetor(Item novo) {
     if (total_itens_vetor < MAX_ITENS) {
@@ -50,10 +52,12 @@ int inserirItemVetor(Item novo) {
     return 0; // Mochila cheia
 }
 
-
-   //Remove um item do vetor pelo nome, movendo os elementos subsequentes.
-  //O nome do item a ser removido.
- // 1 se a remoção foi bem-sucedida, 0 caso contrário.
+/**
+ * @brief Requisito 3 (Remover): Remove um item por nome do vetor.
+ * Implementa deslocamento para manter a sequência.
+ * @param nome O nome do item a ser removido.
+ * @return 1 se removido, 0 se não encontrado.
+ */
 
 int removerItemVetor(const char *nome) {
     int i, j;
@@ -69,9 +73,9 @@ int removerItemVetor(const char *nome) {
     }
     return 0; // Item não encontrado
 }
-
- //Lista todos os itens presentes no vetor da mochila.
- 
+/**
+ * @brief Requisito 3 (Listar): Lista todos os itens do vetor.
+ */
 void listarItensVetor() {
     printf("\n--- Mochila (Vetor) - %d/%d itens ---\n", total_itens_vetor, MAX_ITENS);
     if (total_itens_vetor == 0) {
@@ -84,8 +88,10 @@ void listarItensVetor() {
     }
     printf("--------------------------------------\n");
 }
-
- //Ordena o vetor da mochila pelo nome dos itens (usando Bubble Sort).
+/**
+ * @brief Requisito 4 (Ordenação): Ordena os itens no vetor por nome (Selection Sort).
+ * @note A ordenação é crucial para habilitar a busca binária.
+ */
  
 void ordenarVetor() {
     // Implementação de Bubble Sort para ordenar o vetor por nome
@@ -104,10 +110,11 @@ void ordenarVetor() {
     }
     printf("\nVetor ordenado com sucesso!\n");
 }
-
- //Busca sequencial por um item no vetor pelo nome.
- // O nome do item a ser buscado.
- // O índice do item encontrado, ou -1 se não for encontrado.
+/**
+ * @brief Requisito 3 (Buscar Sequencial): Busca um item por nome no vetor.
+ * @param nome O nome do item a buscar.
+ * @return Ponteiro para o Item se encontrado, NULL caso contrário.
+ */
  
 int buscarSequencialVetor(const char *nome) {
     cont_comparacoes_seq = 0; // Reseta o contador
@@ -119,11 +126,12 @@ int buscarSequencialVetor(const char *nome) {
     }
     return -1; // Item não encontrado
 }
+/**
+ * @brief Requisito 5 (Busca Binária): Busca um item por nome no vetor (requer ordenação prévia).
+ * @param nome O nome do item a buscar.
+ * @return Ponteiro para o Item se encontrado, NULL caso contrário.
+ */
 
- //Busca binária por um item no vetor (deve estar ordenado).
- //Nome O nome do item a ser buscado.
- // O índice do item encontrado, ou -1 se não for encontrado.
- 
 int buscarBinariaVetor(const char *nome) {
     cont_comparacoes_bin = 0; // Reseta o contador
     int inicio = 0;
@@ -151,9 +159,10 @@ int buscarBinariaVetor(const char *nome) {
 
 No* cabeca = NULL; // Ponteiro para o primeiro nó da lista encadeada
 
-
- //Insere um novo item no início da lista encadeada (inserção simples).
- // Novo O item a ser inserido.
+/**
+ * @brief Requisito 3 (Inserir): Insere um novo item na lista encadeada ou atualiza a quantidade.
+ * @param novoItem O Item a ser inserido/atualizado.
+ */
 
 void inserirItemLista(Item novo) {
     // Aloca memória para o novo nó
@@ -172,10 +181,11 @@ void inserirItemLista(Item novo) {
     printf("Item '%s' inserido com sucesso (Lista Encadeada).\n", novo.nome);
 }
 
- 
-  // Remove um item da lista encadeada pelo nome.
-  //  O nome do item a ser removido.
-  // 1 se a remoção foi bem-sucedida, 0 caso contrário.
+/**
+ * @brief Requisito 3 (Remover): Remove um item por nome da lista encadeada.
+ * @param nome O nome do item a ser removido.
+ * @return 1 se removido, 0 se não encontrado.
+ */
  
 int removerItemLista(const char *nome) {
     No *atual = cabeca;
@@ -203,7 +213,10 @@ int removerItemLista(const char *nome) {
 
 
  // Lista todos os itens presentes na lista encadeada.
- 
+ /**
+ * @brief Requisito 3 (Listar): Lista todos os itens da lista encadeada.
+ */
+
 void listarItensLista() {
     No *atual = cabeca;
     int count = 0;
@@ -223,10 +236,11 @@ void listarItensLista() {
     printf("--------------------------------\n");
 }
 
-
- // Busca sequencial por um item na lista encadeada pelo nome.
- //O nome do item a ser buscado.
- //O ponteiro para o nó encontrado, ou NULL se não for encontrado.
+/**
+ * @brief Requisito 3 (Buscar Sequencial): Busca um item por nome na lista encadeada.
+ * @param nome O nome do item a buscar.
+ * @return Ponteiro para o Item se encontrado, NULL caso contrário.
+ */
  
 No* buscarSequencialLista(const char *nome) {
     cont_comparacoes_seq = 0; // Reseta o contador
@@ -247,8 +261,9 @@ No* buscarSequencialLista(const char *nome) {
   // Funções Auxiliares e Menu Principal
  // *****************************************************************************
 
-
- // Limpa a tela.
+/**
+ * @brief Libera toda a memória alocada para a lista encadeada.
+ */
  
 void limparTela() {
     // Tenta usar o comando 'cls' (Windows) ou 'clear' (Unix/Linux/macOS)
