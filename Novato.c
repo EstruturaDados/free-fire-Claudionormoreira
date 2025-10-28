@@ -34,16 +34,18 @@ void listarItens() {
         printf("A mochila está vazia. Colete alguns itens!\n");
         return;
     }
-    printf("====MOCHILA OPERACIONAL DE COMBATE NA SELVA====");
-    printf("ID | Nome                   | Tipo       | Quantidade\n");
-    printf("---|------------------------|------------|------------\n");
+    printf("    ==============================================");
+    printf("\n      MOCHILA OPERACIONAL DE COMBATE NA SELVA\n ");
+    printf("    ==============================================\n\n");
+    printf("ID | Nome                         | Tipo                 | Quantidade\n");
+    printf("---|------------------------------|----------------------|------------\n");
 
     // Percorre o vetor de itens
     for (int i = 0; i < totalItens; i++) {
         printf("%-2d | %-28s | %-20s | %d\n", 
-               i + 1, mochila[i].nome, mochila[i].tipo, mochila[i].quantidade);
+         i + 1, mochila[i].nome, mochila[i].tipo, mochila[i].quantidade);
     }
-    printf("-------------------------------------------------------------------\n");
+    printf("-----------------------------------------------------------------------\n");
 }
 
  /*Permite ao jogador cadastrar um novo item na mochila.
